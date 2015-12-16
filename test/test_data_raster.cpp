@@ -15,18 +15,18 @@ void test_data_raster::tearDown (void)
 
 void test_data_raster::runTest1(void) 
 {
-	try
-	{
-		DataRaster dr;
-	}
-	catch (std::exception& e)
-	{
-		std::ostringstream ostr;
-		ostr << "*** Exception thrown in test_data_raster::runTest1: " << e.what();
-		CPPUNIT_FAIL(ostr.str().c_str());
-	}
-	
-	std::cout << std::endl << "test_data_raster::runTest1 completed successfully" << std::endl << std::endl;
+  try
+  {
+    DataRaster dr;
+  }
+  catch (std::exception& e)
+  {
+    std::ostringstream ostr;
+    ostr << "*** Exception thrown in test_data_raster::runTest1: " << e.what();
+    CPPUNIT_FAIL(ostr.str().c_str());
+  }
+  
+  std::cout << std::endl << "test_data_raster::runTest1 completed successfully" << std::endl << std::endl;
 }
 
 template <typename T> void test_data_raster::computeMean(DataBuffer<T>& buf, std::vector<double>& meanvals)
@@ -43,9 +43,9 @@ template <typename T> void test_data_raster::computeMean(DataBuffer<T>& buf, std
 }
 void test_data_raster::runTest2(void) 
 {
-	try
-	{
-		DataRaster dr;
+  try
+  {
+    DataRaster dr;
     dr.open(std::string("ms_chip"), GA_ReadOnly);
     
     //test accessors
@@ -53,7 +53,7 @@ void test_data_raster::runTest2(void)
         dr.nlines()   != 400 ||
         dr.nbands()   != 4   || 
         dr.dataType() != GDT_UInt16)
-      CPPUNIT_FAIL("Parameters do not match");		
+      CPPUNIT_FAIL("Parameters do not match");    
       
     double ulx, uly, lrx, lry;
     dr.getBounds(ulx, uly, lrx, lry);
@@ -62,7 +62,7 @@ void test_data_raster::runTest2(void)
     //test accessor for dims object
     if (dr.dims().width()  != 400 ||
         dr.dims().height() != 400)
-      CPPUNIT_FAIL("Parameters do not match");		
+      CPPUNIT_FAIL("Parameters do not match");    
       
     //Allocate a buffer to hold the imagery data
     DataBuffer<unsigned short> databuffer(dr.dims(), dr.nbands());
@@ -85,22 +85,22 @@ void test_data_raster::runTest2(void)
         meanvals[2] - 323.0707875 > tol  ||
         meanvals[3] - 518.7096562 > tol)
       CPPUNIT_FAIL("test_data_raster::runTest2: mean values do not agree with truth data");
-	}
-	catch (std::exception& e)
-	{
-		std::ostringstream ostr;
-		ostr << "*** Exception thrown in test_data_raster::runTest2: " << e.what();
-		CPPUNIT_FAIL(ostr.str().c_str());
-	}
-	
-	std::cout << std::endl << "test_data_raster::runTest2 completed successfully" << std::endl << std::endl;
+  }
+  catch (std::exception& e)
+  {
+    std::ostringstream ostr;
+    ostr << "*** Exception thrown in test_data_raster::runTest2: " << e.what();
+    CPPUNIT_FAIL(ostr.str().c_str());
+  }
+  
+  std::cout << std::endl << "test_data_raster::runTest2 completed successfully" << std::endl << std::endl;
 }
 
 void test_data_raster::runTest3(void) 
 {
-	try
-	{
-		DataRaster drmschip;
+  try
+  {
+    DataRaster drmschip;
     drmschip.open(std::string("ms_chip"), GA_ReadOnly);
     
     //Allocate a buffer to hold the mschip imagery data
@@ -143,14 +143,14 @@ void test_data_raster::runTest3(void)
       }
     }
       
-	}
-	catch (std::exception& e)
-	{
-		std::ostringstream ostr;
-		ostr << "*** Exception thrown in test_data_raster::runTest3: " << e.what();
-		CPPUNIT_FAIL(ostr.str().c_str());
-	}
-	
-	std::cout << std::endl << "test_data_raster::runTest3 completed successfully" << std::endl << std::endl;
+  }
+  catch (std::exception& e)
+  {
+    std::ostringstream ostr;
+    ostr << "*** Exception thrown in test_data_raster::runTest3: " << e.what();
+    CPPUNIT_FAIL(ostr.str().c_str());
+  }
+  
+  std::cout << std::endl << "test_data_raster::runTest3 completed successfully" << std::endl << std::endl;
 }
 
