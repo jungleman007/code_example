@@ -11,4 +11,38 @@ DataBuffer.h: A class that holds a buffer object for interacting with imagery da
 
 DataRasterIterator.h: A class that is capable of "iterating" over an image by reading the image in chunks rather than reading the entire image into memory.  The iterator supports non-zero overlap between adjacent chunks if desired.
 
+```DataRaster dr;
+    dr.open(std::string("ms_chip"), GA_ReadOnly);
+    
+    //test accessors
+    if (dr.nsamples() != 400 ||
+        dr.nlines()   != 400 ||
+        dr.nbands()   != 4   || 
+        dr.dataType() != GDT_UInt16)
+      CPPUNIT_FAIL("Parameters do not match");		
+      
+    double ulx, uly, lrx, lry;
+    dr.getBounds(ulx, uly, lrx, lry);
+    std::cout << "DataRaster Bounds are: " << ulx << " " << uly << " " << lrx << " " << lry << std::endl;
+    
+    //test accessor for dims object
+    if (dr.dims().width()  != 400 ||
+        dr.dims().height() != 400)
+      CPPUNIT_FAIL("Parameters do not match");		
+      
+    //Allocate a buffer to hold the imagery data
+    DataBuffer<unsigned short> databuffer(dr.dims(), dr.nbands());
+    //read the data into each band
+    for (int band=0; band<dr.nbands(); band++)
+      dr.getData(databuffer, band+1, dr.dataType(), band);
+      
+    //compute the mean for each band
+    std::vector<double> meanvals;
+    computeMean<unsigned short>(databuffer, meanvals);
+    
+    std::cout << "Mean Values are: ";
+    for (int band=0; band<dr.nbands(); band++)
+      std::cout << "Band " << band << " :" << meanvals[band] << " ";
+    std::cout << std::endl;```
+
 
