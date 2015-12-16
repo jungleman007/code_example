@@ -15,7 +15,7 @@ void test_ndvi::runTest1(void)
   try
   {
     Ndvi ndvicalc(std::string("ms_chip"), std::string("ndvi_output.tif"));
-		ndvicalc.run();
+    ndvicalc.run();
   }
   catch (std::exception& e)
   {
