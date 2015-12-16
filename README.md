@@ -16,6 +16,16 @@ DataBuffer.h: A class that holds a buffer object for interacting with imagery da
 
 DataRasterIterator.h: A class that is capable of "iterating" over an image by reading the image in chunks rather than reading the entire image into memory.  The iterator supports non-zero overlap between adjacent chunks if desired.
 
+# Building The Code
+
+You will need to install the gdal and gdal-dev packages.  Typically you can get these through your package manager like yum or apt-get.  You will also need to install cppunit (http://sourceforge.net/projects/cppunit/).  Download it and follow the instructions for building it and install it.  You may need to edit the Makefile in the "test" directory to point the Makefile at the include and lib locations of gdal and cppunit.   When you determine these locations, simply edit the Makefile and change the INCLUDES and LINC lines to reflect the paths on your system.  To get the Doxygen docs to build, you will need to have Doxygen installed.  You should be able to get this with a package manager.
+
+Then:
+
+`make`
+
+will build the tests and will also build the docs using Doxygen (the output will appear in docs/html/index.html).
+
 # Quickstart Example
 
 Here is a quick example of the DataRaster and DataBuffer classes being used:
@@ -54,8 +64,11 @@ Here is a quick example of the DataRaster and DataBuffer classes being used:
     for (int band=0; band<dr.nbands(); band++)
       std::cout << "Band " << band << " :" << meanvals[band] << " ";
     std::cout << std::endl;
+    
+    
     ```
-# Building The Code
+    
+    
 
-You will need to install the gdal and gdal-dev packages.  Typically you can get these through your package manager like yum or apt-get.  You will also need to install cppunit (http://sourceforge.net/projects/cppunit/).  Download it and follow the instructions for building it and install it.  You may beed to edit the Makefile in the "test" directory to point the Makefile at the include and lib locations of gdal and cppunit.   
+
 
