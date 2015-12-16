@@ -46,7 +46,7 @@ Here is a quick example of how the NDVI computation is written.  The code to cal
   }
 ```
 
-Here an input file called "ms_chip" is provided as the input image, and a filename of the outputfile "ndvi_output.tif" is provided.  The NDVI image will be written to the output file.  Taking a look at Ndvi.h, we start with the private members declared in the header file:
+Here a class called Ndvi is constructed.  An input file name "ms_chip" is provided as the input image, and a filename of the outputfile "ndvi_output.tif" is also provided.  The NDVI image will be written to the output file.  Then the run() method is called.  The method is wrapped in a try/catch exception block to handle any errors that may occur.  Taking a look at Ndvi.h, we start with the private members declared in the header file:
 
 ```
 private:
