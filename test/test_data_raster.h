@@ -9,7 +9,7 @@
 class test_data_raster : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE (test_data_raster);
-	CPPUNIT_TEST (runTest1);
+  CPPUNIT_TEST (runTest1);
   CPPUNIT_TEST (runTest2);
   CPPUNIT_TEST (runTest3);
   CPPUNIT_TEST_SUITE_END ();

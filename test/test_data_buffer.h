@@ -7,9 +7,9 @@
 class test_data_buffer : public CPPUNIT_NS::TestFixture
 {
   CPPUNIT_TEST_SUITE (test_data_buffer);
-	CPPUNIT_TEST (runTest1);
-	CPPUNIT_TEST (runTest2);
-	CPPUNIT_TEST (runTest3);
+  CPPUNIT_TEST (runTest1);
+  CPPUNIT_TEST (runTest2);
+  CPPUNIT_TEST (runTest3);
   CPPUNIT_TEST_SUITE_END ();
 
 public:
@@ -20,8 +20,8 @@ public:
 protected:
 
   void runTest1(void);
-	void runTest2(void);
-	void runTest3(void);
+  void runTest2(void);
+  void runTest3(void);
 
 private:
 

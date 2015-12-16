@@ -6,7 +6,7 @@
 // Created: 09/15/2015
 // Purpose: An encapsulation of a data buffer.
 //
-// Modified: 	cpadwick	09/15/2015	Original Definition.
+// Modified:  cpadwick  09/15/2015  Original Definition.
 //
 //================================================================
 

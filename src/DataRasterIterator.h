@@ -6,7 +6,7 @@
 // Created: 12/15/2015
 // Purpose: A class that handles iterating over a raster
 //
-// Modified: 	cpadwick	12/15/2015	Original Definition.
+// Modified:  cpadwick  12/15/2015  Original Definition.
 //
 //================================================================
 

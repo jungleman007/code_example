@@ -6,7 +6,7 @@
 // Created: 12/15/2015 
 // Purpose: An abstraction of a data raster on top of gdal
 //
-// Modified: 	cpadwick	12/15/2105	Original Definition.
+// Modified:  cpadwick  12/15/2105  Original Definition.
 //
 //================================================================
 
@@ -41,9 +41,9 @@ protected:
   /** Write a rectangular region of interest to the file
    * @param tileData Pointer to a memory location containing the tile data 
    * @param tileDims Reference to a DataRasterDims object containing the dimensions of the tileData
-	 * @param outputDims Reference to a DataRasterDims object containing the rectangel to write to in the output file
-	 * @param outBand Integer specifying the output band.  This follows GDAL and is 1 based.
-	 * @param dt DataType
+   * @param outputDims Reference to a DataRasterDims object containing the rectangel to write to in the output file
+   * @param outBand Integer specifying the output band.  This follows GDAL and is 1 based.
+   * @param dt DataType
    */
   template <typename T> 
   void writeSubrect(T* tileData, const RasterDims& tileDims, const RasterDims& outputDims, 
@@ -121,14 +121,14 @@ public:
       gdalDataset_ = NULL;
     }
   };
-	
-	/** Opens an existing file
-	 * @param filename Filename of the image file to open.
-	 * @param gdalMode Access mode for the file
-	*/
-	void open(const std::string& filename, GDALAccess gdalMode) throw (Exception)
+  
+  /** Opens an existing file
+   * @param filename Filename of the image file to open.
+   * @param gdalMode Access mode for the file
+  */
+  void open(const std::string& filename, GDALAccess gdalMode) throw (Exception)
   {
-		gdalDataset_ = (GDALDataset *) GDALOpen(filename.c_str(), gdalMode);
+    gdalDataset_ = (GDALDataset *) GDALOpen(filename.c_str(), gdalMode);
     if (!gdalDataset_)
       throw Exception(std::string("Unable to open file ") + filename);
     nb_ = gdalDataset_->GetRasterCount();
@@ -138,10 +138,10 @@ public:
     dims_.setEndSample(ns_ - 1);
     dims_.setStartLine(0);
     dims_.setEndLine(nl_ - 1);
-	};
+  };
   
   /** Closes a data raster which is currently open
-	*/
+  */
   void close(void)
   {
     if (gdalDataset_)
@@ -155,22 +155,22 @@ public:
     }
     
   };
-	
+  
   /** Creates a new file
-	 * @param filename Filename of the image file to create
-	 * @param dims RasterDims object specifying the spatial dimensions of the file
+   * @param filename Filename of the image file to create
+   * @param dims RasterDims object specifying the spatial dimensions of the file
    * @param nbands The number of bands desired in the file
    * @param dataType The GDALDataType of the output file
    * @param format A valid GDAL format string, e.g. GTiff
    * @param parent If a valid pointer is passed then the new file will inherit the georeferencing and projection from the parent
-	*/
-	void create(const std::string& filename,
-							const RasterDims& dims,
-							int nbands,
-							GDALDataType dataType,
-							const std::string& format,
-							const DataRaster* parent = NULL)
-	{
+  */
+  void create(const std::string& filename,
+              const RasterDims& dims,
+              int nbands,
+              GDALDataType dataType,
+              const std::string& format,
+              const DataRaster* parent = NULL)
+  {
 
     GDALDriver *pDriver;
     pDriver = GetGDALDriverManager()->GetDriverByName(format.c_str());
@@ -204,9 +204,9 @@ public:
     outputDataset = NULL;
 
     open(filename, GA_Update);
-	};
+  };
 
-	
+  
 
 /** Retrieves data from the image.
  * @param buf Pointer to a DataBuffer object
