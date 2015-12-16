@@ -31,6 +31,7 @@ will build the tests and will also build the docs using Doxygen (the output will
 Here is a quick example of the DataRaster and DataBuffer classes being used:
 
 <code>
+
     DataRaster dr;
     dr.open(std::string("ms_chip"), GA_ReadOnly);
     
@@ -64,6 +65,7 @@ Here is a quick example of the DataRaster and DataBuffer classes being used:
     for (int band=0; band<dr.nbands(); band++)
       std::cout << "Band " << band << " :" << meanvals[band] << " ";
     std::cout << std::endl;
+    
 </code>
     
     
