@@ -24,7 +24,7 @@ Then:
 
 `make`
 
-will build the tests and will also build the docs using Doxygen (the output will appear in docs/html/index.html).
+will build the tests and will also build the docs using Doxygen (the output will appear in docs/html/index.html).  You can run the tests by cd'ing into the test directory and typing `./test`.  The output from the cppunit tests should scroll by.
 
 # Quickstart Example
 
