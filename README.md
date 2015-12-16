@@ -11,7 +11,10 @@ DataBuffer.h: A class that holds a buffer object for interacting with imagery da
 
 DataRasterIterator.h: A class that is capable of "iterating" over an image by reading the image in chunks rather than reading the entire image into memory.  The iterator supports non-zero overlap between adjacent chunks if desired.
 
-```DataRaster dr;
+Here is a quick example of the DataRaster and DataBuffer classes being used:
+
+```
+    DataRaster dr;
     dr.open(std::string("ms_chip"), GA_ReadOnly);
     
     //test accessors
@@ -43,6 +46,7 @@ DataRasterIterator.h: A class that is capable of "iterating" over an image by re
     std::cout << "Mean Values are: ";
     for (int band=0; band<dr.nbands(); band++)
       std::cout << "Band " << band << " :" << meanvals[band] << " ";
-    std::cout << std::endl;```
+    std::cout << std::endl;
+    ```
 
 
