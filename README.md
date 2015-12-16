@@ -182,6 +182,8 @@ template <typename T> static void processchunk(DataBuffer<T>& inputdata, DataBuf
 In this method we use bands 3 and 4 from the input image to compute the NDVI value for each pixel in the output image.  We are assuming that the user passed the data to us in the band order blue, green, red, NIR.  If this is not true we will be in trouble!  The calculation goes quickly since the calls to the data() method return native c++ pointers, so there is no penalty or overhead from calling accessors or other methods in the virtual function stack.  This computation could be implemented in a multi-threaded fashion using OpenMP in a very straightforward manner.
 
 And that's it!  The library provides a clean, easy to use interface for implementing operations on imagery data.  The library handles large files by utilizing chunked IO based on user defined memory constraints.  The advantage of using this framework is that the algorithm implementer can focus on implementing the code for the algorithm and letting the library worry about the file IO.  Using this framework, the author has been able to reduce the time to develop new algorithms signficantly.
+
+The next step in learning the library is to read the test code and understand how each class works and how it is used.  Then examine the header files in the src directory and familiarize yourself with those.  Then, implement your own stuff!
     
 
 
