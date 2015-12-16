@@ -32,7 +32,7 @@ private:
    */
   int getDataTypeSize(GDALDataType dt) throw(Exception)
   {
-    switch(dataType)
+    switch(dt)
     {
       case (GDT_Byte):
       {
@@ -98,7 +98,7 @@ public:
    * @param overlap The desired overlap in pixels between adjacent tiles
    * @param mode The desired tiling mode for iterating over the raster
    */
-  DataRasterIterator(const DataRaster& source, int memsize, int overlap, TilingMode mode = TilingModeSingleBand) throw (IPLException)
+  DataRasterIterator(const DataRaster& source, int memsize, int overlap, TilingMode mode = TilingModeSingleBand) throw (Exception)
   {
     ns_ = source.nsamples();
     nl_ = source.nlines();
@@ -106,15 +106,15 @@ public:
     int dtSize = getDataTypeSize(source.dataType());
 
     // Determine tile size by taking memsize and overlap into account.  Scanline tiling.
-    lineChunkSize_ = (int)ceil(memSize / ((double)ns_ * (double)dtSize));
+    lineChunkSize_ = (int)ceil(memsize / ((double)ns_ * (double)dtSize));
     if (mode == TilingModeAllBands)
-      lineChunkSize_ /= (double)(source->nbands());
+      lineChunkSize_ /= (double)(source.nbands());
 
     if (lineChunkSize_ - (2 * overlap) <= 0)
     {
       std::ostringstream ostr;
       ostr << "Error: DataRasterIterator::initialize(): Requested overlap of "
-           << overlap << " lines is too large. Requested memsize of " << memSize
+           << overlap << " lines is too large. Requested memsize of " << memsize
            << " bytes only allows for " << lineChunkSize_ << " lines per tile." << std::endl
            << "Try increasing the requested memsize or decreasing the overlap." << std::endl;
       throw Exception(ostr.str());
@@ -137,7 +137,7 @@ public:
    * @param input_tile_dims The dimensions of the input tile
    * @param output_tile_dims The dimensions of the output tile.  In the case of overlap the input_tile_dims will not be the same as the output_tile_dims
    */
-  void getTileDims(int tileNum, const RasterDims& input_tile_dims, RasterDims* output_tile_dims = 0)
+  void getTileDims(int tileNum, RasterDims& input_tile_dims, RasterDims* output_tile_dims = 0)
   {
     input_tile_dims.setStartSample(0);
     input_tile_dims.setEndSample(ns_ - 1);
@@ -153,8 +153,8 @@ public:
     }
 
     //handle overlap
-    input_tile_dims.setStartLine(input_tile_dims - overlap_);
-    input_tile_dims.setStartLine( (input_tile_dims.startLine < 0) ? 0 : input_tile_dims.startLine() );
+    input_tile_dims.setStartLine(input_tile_dims.startLine() - overlap_);
+    input_tile_dims.setStartLine( (input_tile_dims.startLine() < 0) ? 0 : input_tile_dims.startLine() );
     input_tile_dims.setEndLine(input_tile_dims.endLine() + overlap_);
     input_tile_dims.setEndLine( (input_tile_dims.endLine() > nl_ - 1) ? nl_ - 1 : input_tile_dims.endLine() );
 
@@ -165,19 +165,13 @@ public:
     }
   };
 
-  const DataRasterDims& imageToTile(const RasterDims& imageTileDims)
-  {
-    RasterDims dims;
-    dims.setStartSample(0);
-    dims.setEndSample(imageTileDims.endSample() - imageTileDims.startSample());
-    dims.setStartLine(0);
-    dims.setEndLine(imageTileDims.endLine() - imageTileDims.startLine());
-    return(dims);
-  }
+  /** Returns the number of tiles for this source raster */
+  int ntiles(void) { return(nTiles_); };
 
-  //accessors
-  int ntiles(void) { return(ntiles_); };
-  int overlap(void { return(overlap_); );
+  /** Returns the overlap in pixels between adjacent tiles for this source raster */
+  int overlap(void) { return(overlap_); };
+
+  /** Sets the overlap in pixels betwen adjacent tiles for this source raster */
   void setOverlap(int overlap) { overlap_ = overlap;} ;
   
 };

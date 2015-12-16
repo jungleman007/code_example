@@ -60,7 +60,7 @@ public:
       delete[](data_);
   };
 
-/** operator [], used for indexing an element of the data array */
+  /** operator [], used for indexing an element of the data array */
   inline T& operator[](int elem) throw(Exception)
   {
     if (elem < first_ || elem > last_)
@@ -68,13 +68,19 @@ public:
     return(data_[elem]);
   };
 
-/** Accessors */
+  /** Return the buffer dimensions */
   const RasterDims& dims(void) const { return(dims_); };
+
+  /** Return the number of bands in the buffer */
   int nbands(void) const { return(nbands_); };
+
+  /** Return the width of the buffer */
   int width(void) const { return(width_); };
+
+  /** Return the height of the buffer */
   int height(void) const {return(height_); };
 
-/** Accessor, returns non const pointer to underlying input data */
+  /** Returns non-const pointer to underlying input data */
   T* data(void) { return(data_); };
 
 };

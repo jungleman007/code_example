@@ -298,14 +298,6 @@ public:
     *mapLine = dline;
   };
 
-  //tile iterator
-  /*IPL_DataRasterIterator* createIterator(int memSize,
-    int overlap = 0,
-    int level = -1,
-    int granularity = 1,
-    bool b2DTiling = false,
-    TilingMode mode = TilingModeSingleBand) throw (IPLException);*/
-
   /** Returns the number of samples (columns) for this DataRaster. */
   int nsamples(void) const { return ns_; };
 
@@ -319,14 +311,14 @@ public:
   const RasterDims& dims(void) const { return dims_; };
 
   /** Returns the dataType for this DataRaster. */
-  GDALDataType dataType(int band=1) throw(Exception)
+  GDALDataType dataType(int band=1) const throw(Exception)
   {
     if (!gdalDataset_)
       throw Exception("DataRaster::dataType(): Error: null pointer exception");
-    gdalRasterBand_ = gdalDataset_->GetRasterBand(band);
-    if (!gdalRasterBand_)
+    GDALRasterBand* gdalRasterBand = gdalDataset_->GetRasterBand(band);
+    if (!gdalRasterBand)
       throw Exception("DataRaster::dataType(): Error: null pointer exception");
-    GDALDataType dataType = gdalRasterBand_->GetRasterDataType();
+    GDALDataType dataType = gdalRasterBand->GetRasterDataType();
     return(dataType);
   };
 };

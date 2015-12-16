@@ -79,6 +79,23 @@ public:
     
     /** Return height */
     int height(void) const { return(endLine_ - startLine_ + 1); };
+  
+    /** Equality operator */
+    inline bool operator==(const RasterDims& rhs) const
+    { 
+      if (startSample_ == rhs.startSample()  &&
+          endSample_   == rhs.endSample()    &&
+          startLine_   == rhs.startLine()    &&
+          endLine_     == rhs.endLine())
+      {
+        return(true);
+      }
+      else
+      { 
+        return(false);
+      }
+      
+    };
     
     void print(void)
     {
