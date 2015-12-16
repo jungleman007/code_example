@@ -80,6 +80,12 @@ protected:
     }
   };
   
+  /** Writes data to a file
+   * @param data Pointer to a memory location containing the data 
+   * @param band Integer specifying the band in the file to write to.  This is a 1-based index.
+   * @param dims Reference to a DataRasterDims object containing the rectangle to write to in the output file
+   * @param dt DataType
+   */
   void setData(void* data, int band, const RasterDims& dims, GDALDataType dt) throw(Exception)
   {
     if (!gdalDataset_)
@@ -300,11 +306,19 @@ public:
     bool b2DTiling = false,
     TilingMode mode = TilingModeSingleBand) throw (IPLException);*/
 
-  //accessors
+  /** Returns the number of samples (columns) for this DataRaster. */
   int nsamples(void) const { return ns_; };
+
+  /** Returns the number of lines (rows) for this DataRaster. */
   int nlines(void) const { return nl_; };
+
+  /** Returns the number of bands for this DataRaster. */
   int nbands(void) const { return nb_; };
+
+  /** Returns the dimensions of this DataRaster. */
   const RasterDims& dims(void) const { return dims_; };
+
+  /** Returns the dataType for this DataRaster. */
   GDALDataType dataType(int band=1) throw(Exception)
   {
     if (!gdalDataset_)
