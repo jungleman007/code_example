@@ -183,7 +183,6 @@ In this method we use bands 3 and 4 from the input image to compute the NDVI val
 
 And that's it!  The library provides a clean, easy to use interface for implementing operations on imagery data.  The library handles large files by utilizing chnuked IO based on user defined memory constraints.  The advantage of using this framework is that the algorithm implementer can focus on implementing the code for the algorithm and letting the library worry about the file IO.  Using this framework, the author has been able to reduce the time to develop new algorithms signficantly.
     
-    
 
 
 
